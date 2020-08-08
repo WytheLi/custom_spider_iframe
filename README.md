@@ -25,3 +25,7 @@
     - 下载器中间件
         - 对请求对象和响应对象进行预处理
     
+### 编写setup.py将框架安装到python环境中
+```
+python setup.py install
+```
