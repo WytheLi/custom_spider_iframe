@@ -13,10 +13,13 @@ class Spider(object):
         - 解析响应对象，返回数据对象或新的请求对象
     """
 
-    start_url = ''
+    start_url = 'https://www.baidu.com'
 
     def start_requests(self):
-        return Request(self.start_url)
+        if self.start_url:
+            return Request(self.start_url)
+        else:
+            print('please add the start url!')
 
     def parse(self, response):
         """
