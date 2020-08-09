@@ -3,6 +3,7 @@
 # @Author  : willi
 # @Email   : willi168@163.com
 # @Description:
+import datetime
 
 from .downloader import Downloader
 from .scheduler import Scheduler
@@ -11,6 +12,7 @@ from .spider import Spider
 from scrapy_simple.http.request import Request
 from scrapy_simple.middlewares.spider_middlewares import SpiderMiddleware
 from scrapy_simple.middlewares.downloader_middlewares import DownloaderMiddleware
+from scrapy_simple.utils.log import logger
 
 
 class Engine(object):
@@ -29,7 +31,12 @@ class Engine(object):
         self.downloader_middleware = DownloaderMiddleware()
 
     def start(self):
+        start_time = datetime.datetime.now()
+        logger.info('项目启动时间： %s' % start_time)
         self._start_engine()
+        end_time = datetime.datetime.now()
+        logger.info('项目终止时间： %s' % end_time)
+        logger.info('项目耗时： %.2f' % (end_time - start_time).total_seconds())
 
     def _start_engine(self):
         start_request = self.spider.start_requests()
