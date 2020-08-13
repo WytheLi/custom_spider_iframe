@@ -11,9 +11,9 @@ class SpiderMiddleware(object):
         print('爬虫中间件--请求对象的预处理')
         return request
 
-    def process_item(self, response):
+    def process_response(self, response):
         """
-        数据对象的预处理
+        响应对象的预处理
         """
-        print('爬虫中间件--数据对象的预处理')
+        print('爬虫中间件--响应对象的预处理')
         return response

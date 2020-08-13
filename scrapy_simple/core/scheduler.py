@@ -14,13 +14,21 @@ class Scheduler(object):
     """
     def __init__(self):
         self.queue = Queue()
+        # 统计请求总数，用于判断程序退出
+        self.total_request_num = 0
 
     def add_request(self, request):
         self.queue.put(request)
+        self.total_request_num += 1
 
     def get_request(self):
-        request = self.queue.get()
-        return request
+        # request = self.queue.get()
+        try:
+            request = self.queue.get(False)     # 将从队列获取请求对象设置为非阻塞，否则会造成程序无法退出
+        except:
+            return None
+        else:
+            return request
 
     def _filter_request(self, request):
         """

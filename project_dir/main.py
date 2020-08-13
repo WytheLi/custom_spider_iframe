@@ -5,7 +5,9 @@
 # @Description:
 from scrapy_simple.core.engine import Engine
 
+from project_dir.spiders import DoubanSpider
+
 
 if __name__ == '__main__':
-    engine = Engine()
+    engine = Engine(DoubanSpider())
     engine.start()
