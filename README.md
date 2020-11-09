@@ -42,3 +42,22 @@ python setup.py install
 - 日志模块的集成
 - 请求的去重
 - 异步爬去数据
+
+
+### scrapy中间件实现原理解读
+1、 从使用上，在项目下创建中间件类实例，将类实例添加到DOWNLOADER_MIDDLEWARES字典中(这里以下载中间件为例)。
+2、 框架中怎样读取
+
+
+### 用CrawlerProcess对象实例启动爬虫，对scrapy框架进行debug
+```
+if __name__ == '__main__':
+    process = CrawlerProcess()
+    process.crawl(DoubanSpider)
+    process.start()
+```
+
+
+### 参考
+- [框架官方文档](https://doc.scrapy.org/en/latest/topics/architecture.html)
+- [Scrapy源码剖析 -- 挪威的森林s](https://www.jianshu.com/p/e6ad95c845d7)

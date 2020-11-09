@@ -4,7 +4,7 @@
 # @Email   : willi168@163.com
 # @Description:
 class Request(object):
-    def __init__(self, url, method='GET', headers=None, params=None, body=None):
+    def __init__(self, url, method='GET', headers={}, params=None, body=None):
         """"""
         self.url = url
         self.method = method

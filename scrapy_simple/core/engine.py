@@ -14,6 +14,7 @@ from scrapy_simple.http.request import Request
 from scrapy_simple.middlewares.spider_middlewares import SpiderMiddleware
 from scrapy_simple.middlewares.downloader_middlewares import DownloaderMiddleware
 from scrapy_simple.utils.log import logger
+from ..middlewares.useragent import UserAgentMiddleware
 
 
 class Engine(object):
@@ -31,6 +32,7 @@ class Engine(object):
 
         self.spider_middleware = SpiderMiddleware()
         self.downloader_middleware = DownloaderMiddleware()
+        self.ua_mw = UserAgentMiddleware()
 
         self.total_request_nums = 0
         self.total_response_nums = 0
@@ -86,6 +88,7 @@ class Engine(object):
         if not request:
             return
         request = self.downloader_middleware.process_request(request)
+        self.ua_mw.process_request(request)
         response = self.downloader.get_response(request)
         response = self.downloader_middleware.process_response(response)
 
